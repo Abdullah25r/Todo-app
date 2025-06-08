@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
 app.use(cors({
-  origin: "*", // or specify your frontend URL for security
+  origin: "*", 
 }));
 app.use(express.json());
 
