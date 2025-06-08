@@ -1,12 +1,18 @@
 import pg from "pg";
 
 // Create a pool instead of a client to handle multiple connections more efficiently
+// const pool = new pg.Pool({
+//   user: "postgres",
+//   host: "localhost",
+//   database: "Class",
+//   password: "bhatti",
+//   port: 5432,
+// });
 const pool = new pg.Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "Class",
-  password: "bhatti",
-  port: 5432,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 export async function insertTodos(item) {
