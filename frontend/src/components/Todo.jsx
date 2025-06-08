@@ -31,16 +31,23 @@ function Todo() {
   }
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${baseURL}/api/gettodo`);
-        setItems(response.data);
-      } catch (error) {
-        console.log(error);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`${baseURL}/api/gettodo`);
+      const data = response.data;
+      if (Array.isArray(data)) {
+        setItems(data);
+      } else {
+        console.error("Expected an array, but got:", data);
+        setItems([]);
       }
-    };
-    fetchData();
-  }, [baseURL]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  fetchData();
+}, [baseURL]);
+
 
   async function deleteItem(id) {
     try {
