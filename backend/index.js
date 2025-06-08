@@ -2,8 +2,10 @@ import express from "express";
 import cors from "cors";
 import { deleteTodos, fetchData, insertTodos, updateData } from "./models/db.js";
 import bodyParser from "body-parser";
+import env from 'dotenv'
+env.config();
 const app = express();
-const port = 5000;
+const port = process.env.PORT;
 app.use(bodyParser.urlencoded({ extended: true }));
 // Middleware to handle CORS
 
@@ -62,5 +64,5 @@ app.put("/api/updatetodo/:id", async (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-  console.log("Server is running on port 5000");
+  console.log(`Server is running on port ${port}`);
 });
