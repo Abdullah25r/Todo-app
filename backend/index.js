@@ -9,7 +9,7 @@ const port = process.env.PORT;
 app.use(bodyParser.urlencoded({ extended: true }));
 // Middleware to handle CORS
 
-app.use(cors({ origin: "*" }));
+app.use(cors());
 app.use(express.json());
 
 // put data into db
