@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+    @apply bg-gradient-to-br from-gray-800 to-gray-800 text-white; /* Dark background with white text */
+  }
