@@ -7,7 +7,7 @@ function Todo() {
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState("");
   const baseURL = process.env.VITE_API_URL;
-
+  console.log("Base URL is:", baseURL);
   async function preventDefault(e) {
     e.preventDefault();
     if (inputValue.trim() === "") return;
