@@ -6,13 +6,14 @@ function Todo() {
   const [inputValue, setInputValue] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState("");
+  const baseURL = import.meta.env.VITE_API_URL;
 
   async function preventDefault(e) {
     e.preventDefault();
     if (inputValue.trim() === "") return;
 
     try {
-      const response = await axios.post("http://localhost:5000/api/addtodo", {
+      const response = await axios.post(`${baseURL}/api/addtodo`, {
         inputValue,
       });
 
@@ -32,18 +33,18 @@ function Todo() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/gettodo`);
+        const response = await axios.get(`${baseURL}/api/gettodo`);
         setItems(response.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, []);
+  }, [baseURL]);
 
   async function deleteItem(id) {
     try {
-      await axios.delete(`http://localhost:5000/api/deltodo/${id}`);
+      await axios.delete(`${baseURL}/api/deltodo/${id}`);
       setItems(items.filter((item) => item.id !== id));
     } catch (error) {
       console.log(error);
@@ -62,7 +63,7 @@ function Todo() {
     );
 
     try {
-      await axios.put(`http://localhost:5000/api/updatetodo/${id}`, {
+      await axios.put(`${baseURL}/api/updatetodo/${id}`, {
         text: editText,
       });
     } catch (error) {
@@ -86,9 +87,6 @@ function Todo() {
         </h1>
         <form
           className="flex gap-3 mb-6"
-          action=""
-          method="post"
-          id="todo-list"
           onSubmit={preventDefault}
         >
           <input
