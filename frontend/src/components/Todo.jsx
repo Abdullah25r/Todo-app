@@ -6,7 +6,7 @@ function Todo() {
   const [inputValue, setInputValue] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState("");
-  const baseURL = import.meta.env.VITE_API_URL;
+  const baseURL = process.env.VITE_API_URL;
 
   async function preventDefault(e) {
     e.preventDefault();
