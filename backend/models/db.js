@@ -1,5 +1,5 @@
 import pg from "pg";
-
+import env from 'dotenv'
 // Create a pool instead of a client to handle multiple connections more efficiently
 // const pool = new pg.Pool({
 //   user: "postgres",
@@ -8,6 +8,7 @@ import pg from "pg";
 //   password: "bhatti",
 //   port: 5432,
 // });
+env.config();
 const pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
